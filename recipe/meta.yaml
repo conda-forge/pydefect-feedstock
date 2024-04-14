@@ -14,7 +14,7 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
   entry_points:
     - pydefect = pydefect.cli.main:main
     - pydefect_util = pydefect.cli.main_util:main
