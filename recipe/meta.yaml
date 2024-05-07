@@ -1,5 +1,5 @@
 {% set name = "pydefect" %}
-{% set version = "0.9.3" %}
+{% set version = "0.9.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pydefect-{{ version }}.tar.gz
-  sha256: f43e11c17dbc24d3ad315feadf903953505d1ab592cd24068fb6d1e7164f91b0
+  sha256: 1dfde8a0c382fd9a82f97b09304a285cee5b709d294a5b5308f3c37a1f732e65
   patches:
     - requirements.patch
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
   entry_points:
     - pydefect = pydefect.cli.main:main
     - pydefect_util = pydefect.cli.main_util:main
