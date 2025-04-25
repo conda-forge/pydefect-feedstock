@@ -1,5 +1,5 @@
 {% set name = "pydefect" %}
-{% set version = "0.9.6" %}
+{% set version = "0.9.7" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pydefect-{{ version }}.tar.gz
-  sha256: 5cb51143bdbd495668cd29a401d1ac758567863488348105933ece5b77120350
+  sha256: 065c717ee3580eb9250bce4268c3ccec60045b303ea75f569ecff0dacbd405be
   patches:
     - requirements.patch
 
