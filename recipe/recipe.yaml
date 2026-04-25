@@ -1,0 +1,65 @@
+schema_version: 1
+
+context:
+  name: pydefect
+  version: 0.9.12
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pydefect-${{ version }}.tar.gz
+  sha256: 5f4ee5dc48fc5d377a174afb441498c213c87ca1c5fdb69647a68ba1438c147b
+  patches:
+    - requirements.patch
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - pydefect = pydefect.cli.main:main
+      - pydefect_util = pydefect.cli.main_util:main
+      - pydefect_vasp = pydefect.cli.vasp.main_vasp:main
+      - pydefect_vasp_util = pydefect.cli.vasp.main_vasp_util:main
+      - pydefect_print = pydefect.cli.main_print_json:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - scikit-image
+    - python >=${{ python_min }}
+    - numpy
+    - monty
+    - pymatgen
+    - vise
+    - tabulate
+    - adjusttext
+    - matplotlib-label-lines
+
+tests:
+  - python:
+      imports:
+        - pydefect
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: Integrated environment for first-principles point-defect calculations
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/kumagai-group/pydefect
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
