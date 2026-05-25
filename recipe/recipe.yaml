@@ -2,7 +2,8 @@ schema_version: 1
 
 context:
   name: pydefect
-  version: 0.9.12
+  version: 0.10.1
+  python_min: "3.11"
 
 package:
   name: ${{ name|lower }}
@@ -10,12 +11,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pydefect-${{ version }}.tar.gz
-  sha256: 5f4ee5dc48fc5d377a174afb441498c213c87ca1c5fdb69647a68ba1438c147b
+  sha256: c97e61ef132b958bbd4c34d0e080f658aba4f134b2f89f203e7517128a4a8bd6
   patches:
     - requirements.patch
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   python:
@@ -36,12 +37,11 @@ requirements:
     - python >=${{ python_min }}
     - numpy
     - monty
-    - pymatgen
     - vise
     - tabulate
     - adjusttext
     - matplotlib-label-lines
-
+    - pymatgen-core
 tests:
   - python:
       imports:
