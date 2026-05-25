@@ -3,6 +3,7 @@ schema_version: 1
 context:
   name: pydefect
   version: 0.10.1
+  python_min: "3.11"
 
 package:
   name: ${{ name|lower }}
